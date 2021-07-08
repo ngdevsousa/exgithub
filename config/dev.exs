@@ -3,7 +3,7 @@ use Mix.Config
 # Configure your database
 config :exgithub, Exgithub.Repo,
   username: "postgres",
-  password: "postgres",
+  password: "p@ssw0rd",
   database: "exgithub_dev",
   hostname: "localhost",
   show_sensitive_data_on_connection_error: true,

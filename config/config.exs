@@ -10,6 +10,9 @@ use Mix.Config
 config :exgithub,
   ecto_repos: [Exgithub.Repo]
 
+# Custom
+config :exgithub, Exgithub.Repositories.Get, github_adapter: Exgithub.Github.Client
+
 # Configures the endpoint
 config :exgithub, ExgithubWeb.Endpoint,
   url: [host: "localhost"],
