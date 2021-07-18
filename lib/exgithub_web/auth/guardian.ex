@@ -12,7 +12,7 @@ defmodule ExgithubWeb.Auth.Guardian do
     |> GetUser.by_id()
   end
 
-  def authenticate(%{"id" => user_id, "password" => password}) do
+  def authenticate(%{"id" => user_id, "senha" => password}) do
     with {:ok, %User{pwd_hash: hash} = user} <- GetUser.by_id(user_id),
          true <- Pbkdf2.verify_pass(password, hash),
          {:ok, token, _claims} <- encode_and_sign(user) do

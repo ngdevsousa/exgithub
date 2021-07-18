@@ -5,12 +5,11 @@ defmodule Exgithub.User do
 
   alias Ecto.Changeset
 
-  @keys [:name, :password]
-  @derive {Jason.Encoder, only: [:id, :name]}
+  @keys [:senha]
+  @derive {Jason.Encoder, only: [:id]}
 
   schema "users" do
-    field :name, :string
-    field :password, :string, virtual: true
+    field :senha, :string, virtual: true
     field :pwd_hash, :string
 
     timestamps()
@@ -20,11 +19,10 @@ defmodule Exgithub.User do
     user
     |> cast(attrs, @keys)
     |> validate_required(@keys)
-    |> unique_constraint([:name])
     |> hash_password()
   end
 
-  defp hash_password(%Changeset{valid?: true, changes: %{password: password}} = changeset),
+  defp hash_password(%Changeset{valid?: true, changes: %{senha: password}} = changeset),
     do: change(changeset, Pbkdf2.add_hash(password, hash_key: :pwd_hash))
 
   defp hash_password(changeset), do: changeset
