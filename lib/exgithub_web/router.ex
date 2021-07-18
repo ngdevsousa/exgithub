@@ -5,10 +5,21 @@ defmodule ExgithubWeb.Router do
     plug :accepts, ["json"]
   end
 
+  pipeline :auth do
+    plug ExgithubWeb.Auth.Pipeline
+  end
+
+  scope "/api", ExgithubWeb do
+    pipe_through :auth
+
+    get "/", RepositoriesController, :index
+  end
+
   scope "/api", ExgithubWeb do
     pipe_through :api
 
-    get "/", RepositoriesController, :index
+    post "/users/", UsersController, :create
+    post "/users/login", UsersController, :login
   end
 
   # Enables LiveDashboard only for development

@@ -49,7 +49,9 @@ defmodule Exgithub.MixProject do
       {:tesla, "~> 1.4.0"},
       {:hackney, "~> 1.17.0"},
       {:bypass, "~> 2.1", only: :test},
-      {:mox, "~> 1.0", only: :test}
+      {:mox, "~> 1.0", only: :test},
+      {:guardian, "~> 2.0"},
+      {:pbkdf2_elixir, "~> 1.3"}
     ]
   end
 
