@@ -13,6 +13,14 @@ config :exgithub,
 # Custom
 config :exgithub, Exgithub.Repositories.Get, github_adapter: Exgithub.Github.Client
 
+config :exgithub, ExgithubWeb.Auth.Guardian,
+  issuer: "exgithub",
+  secret_key: "zumB0oMjdhQcLw1HHz3aG+AgRmsXFNCtmdg7uZqOBOVqVFc7UII3Pjwgwkz0xxk3"
+
+config :exgithub, ExgithubWeb.Auth.Pipeline,
+  module: ExgithubWeb.Auth.Guardian,
+  error_handler: ExgithubWeb.Auth.ErrorHandler
+
 # Configures the endpoint
 config :exgithub, ExgithubWeb.Endpoint,
   url: [host: "localhost"],
